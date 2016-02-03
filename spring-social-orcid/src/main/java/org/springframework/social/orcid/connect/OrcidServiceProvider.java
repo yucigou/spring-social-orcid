@@ -2,7 +2,7 @@ package org.springframework.social.orcid.connect;
 
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.social.oauth2.OAuth2Template;
-import org.springframework.social.orcid.api.Orcid;
+import org.springframework.social.orcid.api.OrcidApi;
 import org.springframework.social.orcid.api.impl.OrcidTemplate;
 
 
@@ -12,7 +12,7 @@ import org.springframework.social.orcid.api.impl.OrcidTemplate;
  * Reference:
  *   1. http://members.orcid.org/api/tokens-through-3-legged-oauth-authorization
  */
-public class OrcidServiceProvider extends AbstractOAuth2ServiceProvider<Orcid> {
+public class OrcidServiceProvider extends AbstractOAuth2ServiceProvider<OrcidApi> {
 
     public OrcidServiceProvider(String clientId, String clientSecret) {
             super(getOAuth2Template(clientId, clientSecret));
@@ -26,7 +26,7 @@ public class OrcidServiceProvider extends AbstractOAuth2ServiceProvider<Orcid> {
             return oAuth2Template;
     }
 
-    public Orcid getApi(String accessToken) {
+    public OrcidApi getApi(String accessToken) {
             return new OrcidTemplate(accessToken);
     }
     

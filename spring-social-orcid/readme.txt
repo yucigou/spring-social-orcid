@@ -5,3 +5,4 @@ http://docs.spring.io/spring-social/docs/1.1.0.RELEASE/reference/htmlsingle/#sec
 
 2. ORCID
 http://members.orcid.org/api/tokens-through-3-legged-oauth-authorization
+https://members.orcid.org/api/tutorial-retrieve-data-orcid-record-curl-12-and-earlier
