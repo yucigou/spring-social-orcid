@@ -18,14 +18,14 @@ public class MessageOperationsImpl extends AbstractOrcidOperations implements Me
 
 	@Override
 	public OrcidProfile getOrcidProfile(String orcidId) {
-		requireAuthorization();
-		URI uri = URIBuilder.fromUri("https://pub.orcid.org/v1.2/"+orcidId+"/orcid-bio/").build();
+		URI uri = URIBuilder.fromUri("https://pub.orcid.org/v1.2/"+orcidId+"/orcid-profile").build();
 		OrcidProfile response = restTemplate.getForObject(uri, OrcidProfile.class);
 		return response;
 	}
 
 	@Override
 	public OrcidProfile getOrcidProfile() {
+        requireAuthorization();
 		// TODO Auto-generated method stub
 		return null;
 	}
