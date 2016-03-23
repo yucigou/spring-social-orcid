@@ -9,14 +9,14 @@ import java.util.Locale;
 import org.junit.Before;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.social.orcid.api.impl.OrcidTemplate;
+import org.springframework.social.orcid.api.impl.OrcidApiImpl;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 public class AbstractOrcidApiTest {
 	protected static final String ACCESS_TOKEN = "someAccessToken";
 
-	protected OrcidTemplate orcid;
-	protected OrcidTemplate unauthorizedOrcid;
+	protected OrcidApiImpl orcid;
+	protected OrcidApiImpl unauthorizedOrcid;
 	protected MockRestServiceServer mockServer;
 	protected MockRestServiceServer unauthorizedMockServer;
 
@@ -28,12 +28,12 @@ public class AbstractOrcidApiTest {
 		orcid = createOrcidTemplate();
 		mockServer = MockRestServiceServer.createServer(orcid.getRestTemplate());
 		
-		unauthorizedOrcid = new OrcidTemplate();
+		unauthorizedOrcid = new OrcidApiImpl();
 		unauthorizedMockServer = MockRestServiceServer.createServer(unauthorizedOrcid.getRestTemplate());
 	}
 
-	protected OrcidTemplate createOrcidTemplate() {
-		return new OrcidTemplate(ACCESS_TOKEN);
+	protected OrcidApiImpl createOrcidTemplate() {
+		return new OrcidApiImpl(ACCESS_TOKEN);
 	}
 
 	protected Resource jsonResource(String filename) {

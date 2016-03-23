@@ -27,7 +27,7 @@ public class OrcidAdapter implements ApiAdapter<OrcidApi> {
 		OrcidProfile profile = orcidApi.messageOperations().getOrcidProfile();
 		values.setProviderUserId(profile.getOrcidIdentifier().getPath());
 		values.setDisplayName(profile.getOrcidBio().getPersonalDetails().getGivenNames() + profile.getOrcidBio().getPersonalDetails().getFamilyName());
-		values.setProfileUrl("http://orcid.org/" + profile.getOrcidIdentifier().getPath());
+		values.setProfileUrl("http://sandbox.orcid.org/" + profile.getOrcidIdentifier().getPath());
 	}
 
 	public UserProfile fetchUserProfile(OrcidApi orcidApi) {
