@@ -2,11 +2,10 @@ package org.springframework.social.orcid.api.impl;
 
 import java.net.URI;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.social.orcid.api.MessageOperations;
+import org.springframework.social.orcid.jaxb.beans.OrcidMessage;
 import org.springframework.social.orcid.jaxb.beans.OrcidProfile;
+import org.springframework.social.orcid.jaxb.beans.impl.OrcidMessageImpl;
 import org.springframework.social.support.URIBuilder;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -27,12 +26,14 @@ public class MessageOperationsImpl extends AbstractOrcidOperations implements Me
 	public OrcidProfile getOrcidProfile(String orcidId) {
 	    Assert.hasText(orcidId, "ORCID ID empty");
 	    
-		URI uri = URIBuilder.fromUri("http://pub.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile").build();
-		// OrcidProfile response = restTemplate.getForObject(uri, OrcidProfile.class);
-		HttpEntity<OrcidProfile> request = new HttpEntity<>(null);
-		ResponseEntity<OrcidProfile> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, request, OrcidProfile.class);
-		OrcidProfile response = responseEntity.getBody();
-		return response;
+//		URI uri = URIBuilder.fromUri("http://pub.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile").build();
+//		OrcidMessage response = restTemplate.getForObject(uri, OrcidMessageImpl.class);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = "http://pub.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
+		OrcidMessage response = restTemplate.getForObject(uri, OrcidMessageImpl.class);
+		
+		return response != null ? response.getOrcidProfile() : null;
 	}
 
 	@Override
