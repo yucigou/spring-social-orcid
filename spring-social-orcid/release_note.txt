@@ -1,0 +1,16 @@
+------------------------
+Release date: 2016-03-25
+Release tag: spring_social_orcid_rc1_0
+Release note: 
+	1. Initial release of Spring Social ORCID.
+	2. This library can be used together with Spring Social.
+	3. This release only supports ORCID Sandbox for the moment
+	
+Usesage:
+	 <dependencies>
+	    <dependency>
+	        <groupId>org.springframework.social</groupId>
+	        <artifactId>spring-social-orcid</artifactId>
+	        <version>1.0-RC</version>
+	    </dependency>
+	 </dependencies>
