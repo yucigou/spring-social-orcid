@@ -1,9 +1,11 @@
 package org.springframework.social.orcid.api.impl;
 
+import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.orcid.api.MessageOperations;
 import org.springframework.social.orcid.api.OrcidApi;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
+import org.springframework.web.client.RestTemplate;
 
 public class OrcidApiImpl extends AbstractOAuth2ApiBinding implements OrcidApi {
 
@@ -26,6 +28,10 @@ public class OrcidApiImpl extends AbstractOAuth2ApiBinding implements OrcidApi {
         initialize(null);
     }
 
+    protected void configureRestTemplate(RestTemplate restTemplate) {
+        restTemplate.getMessageConverters().add(new Jaxb2RootElementHttpMessageConverter());
+    }
+    
     // private helpers
 	private void initialize(String accessToken) {
 		// Wrap the request factory with a BufferingClientHttpRequestFactory so

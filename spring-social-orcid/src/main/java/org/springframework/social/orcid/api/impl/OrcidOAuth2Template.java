@@ -20,6 +20,8 @@ import java.util.Map;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.util.MultiValueMap;
+//import org.springframework.web.client.RestTemplate;
+//import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 
 /**
  * @author Yuci Gou
@@ -35,20 +37,13 @@ public class OrcidOAuth2Template extends OAuth2Template {
 	public OrcidOAuth2Template(String clientId, String clientSecret, String authorizeUrl, String accessTokenUrl) {
 	    super(clientId, clientSecret, authorizeUrl, accessTokenUrl);
     }
-
-	/*
-	@Override
-	protected RestTemplate createRestTemplate() {
-		RestTemplate restTemplate = new RestTemplate(ClientHttpRequestFactorySelector.getRequestFactory());
-		FormHttpMessageConverter messageConverter = new FormHttpMessageConverter() {
-			public boolean canRead(Class<?> clazz, MediaType mediaType) {
-				// always read as x-www-url-formencoded even though Facebook sets contentType to text/plain				
-				return true;
-			}
-		};
-		restTemplate.setMessageConverters(Collections.<HttpMessageConverter<?>>singletonList(messageConverter));
-		return restTemplate;
-	}*/
+	
+//	@Override
+//    protected RestTemplate createRestTemplate() {
+//	    RestTemplate restTemplate = super.createRestTemplate();
+//	    restTemplate.getMessageConverters().add(new SourceHttpMessageConverter<>());
+//        return restTemplate;
+//    }
 	
 	@Override
 	@SuppressWarnings("unchecked")	
