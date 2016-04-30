@@ -11,6 +11,7 @@ import org.springframework.social.orcid.api.MessageOperations;
 import org.springframework.social.orcid.jaxb.beans.OrcidMessage;
 import org.springframework.social.orcid.jaxb.beans.OrcidProfile;
 import org.springframework.social.orcid.jaxb.beans.impl.OrcidMessageImpl;
+import org.springframework.social.orcid.utils.OrcidConfigBroker;
 //import org.springframework.social.support.URIBuilder;
 //import java.net.URI;
 import org.springframework.util.Assert;
@@ -48,7 +49,8 @@ public class MessageOperationsImpl extends AbstractOrcidOperations implements Me
 		// OrcidMessage response = restTemplate.getForObject(url, OrcidMessageImpl.class);
 		////////////////////////////////////////
 		
-		String url = "http://api.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
+		// String url = "http://api.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
+		String url = OrcidConfigBroker.getOrcidConfig().getApiUrl() + orcidId + "/orcid-profile";
 		// Set XML content type explicitly to force response in XML (If not spring gets response in JSON)
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));

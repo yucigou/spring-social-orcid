@@ -7,6 +7,7 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
 import org.springframework.social.orcid.api.OrcidApi;
 import org.springframework.social.orcid.jaxb.beans.OrcidProfile;
+import org.springframework.social.orcid.utils.OrcidConfigBroker;
 import org.springframework.social.orcid.utils.StringUtility;
 
 /**
@@ -40,7 +41,10 @@ public class OrcidAdapter implements ApiAdapter<OrcidApi> {
 		    }
 		}		
 		values.setDisplayName(displayName);
-		values.setProfileUrl("http://sandbox.orcid.org/" + profile.getOrcidIdentifier().getPath());
+		String orcidFrontendUrl = OrcidConfigBroker.getOrcidConfig().getFrontendUrl();
+		// values.setProfileUrl("http://sandbox.orcid.org/" + profile.getOrcidIdentifier().getPath());
+		String profileUrl = orcidFrontendUrl + profile.getOrcidIdentifier().getPath();
+		values.setProfileUrl(profileUrl);
 	}
 
 	public UserProfile fetchUserProfile(OrcidApi orcidApi) {
