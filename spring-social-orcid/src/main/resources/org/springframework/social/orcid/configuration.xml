@@ -8,11 +8,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <beans:bean id="orcidConfig" class="org.springframework.social.orcid.utils.OrcidConfig">
-    	<beans:property name="frontendUrl" value="${orcid.frontendUrl}" />
-    	<beans:property name="apiUrl" value="${orcid.apiUrl}" />
-    	<beans:property name="pubApiUrl" value="${orcid.pubApiUrl}" />
-    	<beans:property name="authorizeUrl" value="${orcid.authorizeUrl}" />
-    	<beans:property name="accessTokenUrl" value="${orcid.accessTokenUrl}" />
+    	<beans:property name="frontendUrl" value="${orcid.frontendUrl:https://sandbox.orcid.org/}" />
+    	<beans:property name="apiUrl" value="${orcid.apiUrl:https://api.sandbox.orcid.org/v1.2/}" />
+    	<beans:property name="pubApiUrl" value="${orcid.pubApiUrl:https://pub.sandbox.orcid.org/v1.2/}" />
+    	<beans:property name="authorizeUrl" value="${orcid.authorizeUrl:https://sandbox.orcid.org/oauth/authorize}" />
+    	<beans:property name="accessTokenUrl" value="${orcid.accessTokenUrl:https://api.sandbox.orcid.org/oauth/token}" />
     </beans:bean>
     <beans:bean class="org.springframework.social.orcid.utils.OrcidConfigBroker">
         <beans:constructor-arg ref="orcidConfig" />
