@@ -4,13 +4,12 @@
 	<groupId>org.springframework.social</groupId>
 	<artifactId>spring-social-orcid</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-RC</version>
+	<version>1.0.0</version>
 	<name>spring-social-orcid</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<spring.version>4.2.3.RELEASE</spring.version>
-<!-- 		<spring.version>4.0.3.RELEASE</spring.version> -->
 		<spring.social.version>1.1.0.RELEASE</spring.social.version>	
 		<jackson.version>2.5.4</jackson.version>
 	</properties>

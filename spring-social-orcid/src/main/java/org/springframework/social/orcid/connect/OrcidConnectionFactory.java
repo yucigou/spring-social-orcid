@@ -5,18 +5,21 @@ import org.springframework.social.orcid.api.OrcidApi;
 
 
 /**
- * Facebook ConnectionFactory implementation.
- * @author Keith Donald
- * @author Craig Walls
+ * ORCID ConnectionFactory implementation.
+ * 
+ * @author Yuci Gou
  */
 public class OrcidConnectionFactory extends OAuth2ConnectionFactory<OrcidApi> {
+    
+    public static final String PROVIDER_ID_ORCID = "orcid";
 	/**
-	 * Creates a FacebookConnectionFactory for the given application ID, secret, and namespace.
-	 * @param appId The application's App ID as assigned by Facebook 
-	 * @param appSecret The application's App Secret as assigned by Facebook
+	 * Creates a OrcidConnectionFactory for the given application ID and secret
+	 * 
+	 * @param appId The application's App ID as assigned by ORCID 
+	 * @param appSecret The application's App Secret as assigned by ORCID
 	 */
 	public OrcidConnectionFactory(String appId, String appSecret) {
-		super("orcid", new OrcidServiceProvider(appId, appSecret), new OrcidAdapter());
+		super(PROVIDER_ID_ORCID, new OrcidServiceProvider(appId, appSecret), new OrcidAdapter());
 	}
 
 }
