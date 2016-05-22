@@ -7,17 +7,21 @@ import org.springframework.social.orcid.api.OrcidApi;
 import org.springframework.social.support.ClientHttpRequestFactorySelector;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class OrcidApiImpl extends AbstractOAuth2ApiBinding implements OrcidApi {
 
 	private MessageOperations messageOperations;
 
 	/**
-	 * Create a new instance of FacebookTemplate. This constructor creates the
-	 * FacebookTemplate using a given access token.
+	 * Create a new instance of RestTemplate. This constructor creates the
+	 * RestTemplate using a given access token.
 	 * 
 	 * @param accessToken
-	 *            An access token given by Facebook after a successful OAuth 2
-	 *            authentication (or through Facebook's JS library).
+	 *            An access token given by ORCID after a successful OAuth 2
+	 *            authentication
 	 */
 	public OrcidApiImpl(String accessToken) {
 		super(accessToken);

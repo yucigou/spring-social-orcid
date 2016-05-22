@@ -1,5 +1,9 @@
 package org.springframework.social.orcid.utils;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class OrcidConfigBroker {
     private static OrcidConfig orcidConfig;
     

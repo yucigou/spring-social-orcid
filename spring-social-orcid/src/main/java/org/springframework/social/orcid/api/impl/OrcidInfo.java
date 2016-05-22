@@ -3,6 +3,10 @@ package org.springframework.social.orcid.api.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class OrcidInfo {
     private Map<String, String> accessTokenOrcidMap;
     

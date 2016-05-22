@@ -11,13 +11,17 @@ import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.MediaType.*;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class MessageOperationsImplTest extends AbstractOrcidApiTest {
     @Test
     public void getDirectMessage() {
         unauthorizedMockServer.expect(requestTo("http://pub.sandbox.orcid.org/v1.2/0000-0001-7155-7939/orcid-profile"))
             .andExpect(method(GET))
             .andRespond(withSuccess(xmlResource("orcidProfile"), APPLICATION_XML));
-        OrcidProfile message = unauthorizedOrcid.messageOperations().getOrcidProfile("0000-0001-7155-7939");
+        OrcidProfile message = unauthorizedOrcid.messageOperations().getOrcidProfile("0000-0001-7155-7939", true);
         assertSingleOrcidProfile(message);
     }
     

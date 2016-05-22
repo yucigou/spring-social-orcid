@@ -12,6 +12,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.social.orcid.api.impl.OrcidApiImpl;
 import org.springframework.test.web.client.MockRestServiceServer;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class AbstractOrcidApiTest {
 	protected static final String ACCESS_TOKEN = "someAccessToken";
 

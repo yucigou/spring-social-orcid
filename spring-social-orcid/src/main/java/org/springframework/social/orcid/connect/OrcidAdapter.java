@@ -12,13 +12,14 @@ import org.springframework.social.orcid.utils.StringUtility;
 
 /**
  * ORCID ApiAdapter implementation.
+ * 
  * @author Yuci Gou
  */
 public class OrcidAdapter implements ApiAdapter<OrcidApi> {
 
 	public boolean test(OrcidApi orcid) {
 		try {
-			orcid.messageOperations().getOrcidProfile("0000-0001-7155-7939");
+			orcid.messageOperations().getOrcidProfile("0000-0001-7155-7939", true);
 			return true;
 		} catch (ApiException e) {
 			return false;

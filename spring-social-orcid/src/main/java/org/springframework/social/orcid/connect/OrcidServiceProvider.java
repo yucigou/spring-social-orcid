@@ -20,19 +20,10 @@ public class OrcidServiceProvider extends AbstractOAuth2ServiceProvider<OrcidApi
         super(getOAuth2Template(clientId, clientSecret));
     }
 
-//    private static OAuth2Template getOAuth2Template(String clientId, String clientSecret) {
-//            OAuth2Template oAuth2Template = new OAuth2Template(clientId, clientSecret,
-//                    "http://sandbox.orcid.org/oauth/authorize",
-//                    "http://api.sandbox.orcid.org/oauth/token");
-//            oAuth2Template.setUseParametersForClientAuthentication(true);
-//            return oAuth2Template;
-//    }
     private static OAuth2Template getOAuth2Template(String clientId, String clientSecret) {
         String authorizeUrl = OrcidConfigBroker.getOrcidConfig().getAuthorizeUrl();
         String accessTokenUrl = OrcidConfigBroker.getOrcidConfig().getAccessTokenUrl();
         OrcidOAuth2Template oAuth2Template = new OrcidOAuth2Template(clientId, clientSecret, authorizeUrl, accessTokenUrl);                
-                // "http://sandbox.orcid.org/oauth/authorize",
-                // "http://api.sandbox.orcid.org/oauth/token");
         oAuth2Template.setUseParametersForClientAuthentication(true);
         return oAuth2Template;
     }

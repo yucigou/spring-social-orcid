@@ -12,14 +12,17 @@ import org.springframework.social.orcid.jaxb.beans.OrcidMessage;
 import org.springframework.social.orcid.jaxb.beans.OrcidProfile;
 import org.springframework.social.orcid.jaxb.beans.impl.OrcidMessageImpl;
 import org.springframework.social.orcid.utils.OrcidConfigBroker;
-//import org.springframework.social.support.URIBuilder;
-//import java.net.URI;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author Yuci Gou
+ *
+ */
 public class MessageOperationsImpl extends AbstractOrcidOperations implements MessageOperations {
 
 	private final RestTemplate restTemplate;
+	private RestTemplate pubRestTemplate;
 	
 	private String accessToken;
 	
@@ -27,41 +30,34 @@ public class MessageOperationsImpl extends AbstractOrcidOperations implements Me
 		super(authorized);
 		this.restTemplate = restTemplate;
 		this.accessToken = accessToken;
+		this.pubRestTemplate = new RestTemplate();
 	}
 
 	@Override
-	public OrcidProfile getOrcidProfile(String orcidId) {
+	public OrcidProfile getOrcidProfile(String orcidId, boolean isPublic) {
 	    Assert.hasText(orcidId, "ORCID ID empty");
 	    
-        ////////////////////////////////////////
-	    // URI uri = URIBuilder.fromUri("http://pub.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile").build();
-	    // OrcidMessage response = restTemplate.getForObject(uri, OrcidMessageImpl.class);
-        ////////////////////////////////////////
-		
-	    ////////////////////////////////////////
-		// RestTemplate restTemplate = new RestTemplate();
-		// String url = "http://pub.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
-	    // OrcidMessage response = restTemplate.getForObject(url, OrcidMessageImpl.class);
-	    ////////////////////////////////////////
-	    
-	    ////////////////////////////////////////
-	    // String url = "http://api.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
-		// OrcidMessage response = restTemplate.getForObject(url, OrcidMessageImpl.class);
-		////////////////////////////////////////
-		
-		// String url = "http://api.sandbox.orcid.org/v1.2/"+orcidId+"/orcid-profile";
-		String url = OrcidConfigBroker.getOrcidConfig().getApiUrl() + orcidId + "/orcid-profile";
+	    String url;
+	    RestTemplate restTmp;
+	    if (isPublic) {
+	        url = OrcidConfigBroker.getOrcidConfig().getPubApiUrl();
+	        restTmp = pubRestTemplate;
+	    } else {
+	        url = OrcidConfigBroker.getOrcidConfig().getApiUrl();
+	        restTmp = restTemplate;
+	    }
+		url += orcidId + "/orcid-profile";
+
 		// Set XML content type explicitly to force response in XML (If not spring gets response in JSON)
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-		ResponseEntity<OrcidMessageImpl> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, OrcidMessageImpl.class);
+		ResponseEntity<OrcidMessageImpl> responseEntity = restTmp.exchange(url, HttpMethod.GET, entity, OrcidMessageImpl.class);;
 		if (responseEntity == null) {
 		    return null;
 		}
-		OrcidMessage response = responseEntity.getBody();
-		
+		OrcidMessage response = responseEntity.getBody();		
 		return response != null ? response.getOrcidProfile() : null;
 	}
 
@@ -70,6 +66,6 @@ public class MessageOperationsImpl extends AbstractOrcidOperations implements Me
         requireAuthorization();
         Assert.hasText(accessToken, "Authorized but no access token!");
 		String orcidId = OrcidInfo.getInstance().getOrcid(accessToken);
-		return getOrcidProfile(orcidId);
+		return getOrcidProfile(orcidId, true);
 	}
 }
