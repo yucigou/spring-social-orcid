@@ -1,4 +1,10 @@
 ------------------------
+Release date: 2016-06-24
+Release tag: spring_social_orcid_r1_1_0
+Release note: 
+	New ORCID API for adding works to the ORCID record.
+
+------------------------
 Release date: 2016-06-19
 Release tag: spring_social_orcid_r1_0_0
 Release note: 
