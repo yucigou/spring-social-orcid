@@ -18,10 +18,10 @@ import static org.springframework.http.MediaType.*;
 public class MessageOperationsImplTest extends AbstractOrcidApiTest {
     @Test
     public void getDirectMessage() {
-        unauthorizedMockServer.expect(requestTo("http://pub.sandbox.orcid.org/v1.2/0000-0001-7155-7939/orcid-profile"))
+        unauthorizedMockServer.expect(requestTo("http://pub.sandbox.orcid.org/v1.2/0000-0001-8160-1147/orcid-profile"))
             .andExpect(method(GET))
             .andRespond(withSuccess(xmlResource("orcidProfile"), APPLICATION_XML));
-        OrcidProfile message = unauthorizedOrcid.messageOperations().getOrcidProfile("0000-0001-7155-7939", true);
+        OrcidProfile message = unauthorizedOrcid.messageOperations().getOrcidProfile("0000-0001-8160-1147", true);
         assertSingleOrcidProfile(message);
     }
     
