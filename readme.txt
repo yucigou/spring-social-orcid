@@ -1,3 +1,14 @@
+Notice:
+
+I have devoted this project to Europe PMC (https://github.com/EuropePMC/spring-social-orcid), where we will have more resources.
+
+I'll still be one of the main contributers on this project though :-)
+
+Thank you for your kind support.
+
+Yuci
+
+#############################
 Spring Social ORCID Reference
 
 The Spring Social ORCID project is an extension to Spring Social that enables integration with ORCID.
